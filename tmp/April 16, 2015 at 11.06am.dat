@@ -1,0 +1,132 @@
+
+URL: http://s2dentportal.com/olx/
+Array
+(
+    [0] => Array
+        (
+            [0] => <a href="http://www.s2dentportal.com/olx/register">Register</a>
+            [1] => <a href="http://www.s2dentportal.com/olx/login">Log In</a>
+            [2] => <a href="http://www.s2dentportal.com/olx/">Home</a>
+            [3] => <a href="http://www.s2dentportal.com/olx/vehicles">Vehicles</a>
+            [4] => <a href="http://www.s2dentportal.com/olx/electronics-and-computer">Electronics and Computer</a>
+            [5] => <a href="http://www.s2dentportal.com/olx/mobiles-and-tablets">Mobiles and Tablets</a>
+            [6] => <a href="http://www.s2dentportal.com/olx/clothing-and-accessories">Clothing and Accessories</a>
+            [7] => <a href="http://www.s2dentportal.com/olx/books-and-cds">Books and CDs</a>
+            [8] => <a href="http://www.s2dentportal.com/olx/home-and-furniture">Home and Furniture</a>
+            [9] => <a href="http://www.s2dentportal.com/olx/other">Other</a>
+            [10] => <a href="http://www.s2dentportal.com/olx/home?page=2">2</a>
+            [11] => <a href="http://www.s2dentportal.com/olx/home?page=3">3</a>
+            [12] => <a href="http://www.s2dentportal.com/olx/home?page=2">Next &raquo;</a>
+        )
+
+    [1] => Array
+        (
+            [0] => http://www.s2dentportal.com/olx/register
+            [1] => http://www.s2dentportal.com/olx/login
+            [2] => http://www.s2dentportal.com/olx/
+            [3] => http://www.s2dentportal.com/olx/vehicles
+            [4] => http://www.s2dentportal.com/olx/electronics-and-computer
+            [5] => http://www.s2dentportal.com/olx/mobiles-and-tablets
+            [6] => http://www.s2dentportal.com/olx/clothing-and-accessories
+            [7] => http://www.s2dentportal.com/olx/books-and-cds
+            [8] => http://www.s2dentportal.com/olx/home-and-furniture
+            [9] => http://www.s2dentportal.com/olx/other
+            [10] => http://www.s2dentportal.com/olx/home?page=2
+            [11] => http://www.s2dentportal.com/olx/home?page=3
+            [12] => http://www.s2dentportal.com/olx/home?page=2
+        )
+
+    [2] => Array
+        (
+            [0] => Register
+            [1] => Log In
+            [2] => Home
+            [3] => Vehicles
+            [4] => Electronics and Computer
+            [5] => Mobiles and Tablets
+            [6] => Clothing and Accessories
+            [7] => Books and CDs
+            [8] => Home and Furniture
+            [9] => Other
+            [10] => 2
+            [11] => 3
+            [12] => Next &raquo;
+        )
+
+)
+
+URL: http://www.s2dentportal.com/olx/
+Array
+(
+    [0] => <img src="http://www.s2dentportal.com/olx/assets/products/moto g.jpg" width="210" />
+    [1] => <img src="http://www.s2dentportal.com/olx/assets/products/indica vista.jpg" width="210" />
+    [2] => <img src="http://www.s2dentportal.com/olx/assets/products/lenovo z510.jpg" width="210" />
+    [3] => <img src="http://www.s2dentportal.com/olx/assets/products/hp laptop.jpg" width="210" />
+    [4] => <img src="http://www.s2dentportal.com/olx/assets/products/audi.jpg" width="210" />
+    [5] => <img src="http://www.s2dentportal.com/olx/assets/products/shirt.jpg" width="210" />
+)
+
+URL: http://www.s2dentportal.com/olx/vehicles
+Array
+(
+    [0] => <img src="http://www.s2dentportal.com/olx/assets/products/indica vista.jpg" width="200" class="img-responsive" />
+    [1] => <img src="http://www.s2dentportal.com/olx/assets/products/audi.jpg" width="200" class="img-responsive" />
+    [2] => <img src="http://www.s2dentportal.com/olx/assets/products/3-IMG_20140209_175825.jpg" width="200" class="img-responsive" />
+)
+
+URL: http://www.s2dentportal.com/olx/electronics-and-computer
+Array
+(
+    [0] => <img src="http://www.s2dentportal.com/olx/assets/products/lenovo z510.jpg" width="200" class="img-responsive" />
+    [1] => <img src="http://www.s2dentportal.com/olx/assets/products/hp laptop.jpg" width="200" class="img-responsive" />
+)
+
+URL: http://www.s2dentportal.com/olx/mobiles-and-tablets
+Array
+(
+    [0] => <img src="http://www.s2dentportal.com/olx/assets/products/moto g.jpg" width="200" class="img-responsive" />
+    [1] => <img src="http://www.s2dentportal.com/olx/assets/products/22-Samsung Galaxy S-download.jpg" width="200" class="img-responsive" />
+)
+
+URL: http://www.s2dentportal.com/olx/clothing-and-accessories
+Array
+(
+    [0] => <img src="http://www.s2dentportal.com/olx/assets/products/shirt.jpg" width="200" class="img-responsive" />
+    [1] => <img src="http://www.s2dentportal.com/olx/assets/products/hoodie.jpg" width="200" class="img-responsive" />
+)
+
+URL: http://www.s2dentportal.com/olx/books-and-cds
+Array
+(
+    [0] => <img src="http://www.s2dentportal.com/olx/assets/products/inception.jpg" class="img-responsive" width="200" />
+    [1] => <img src="http://www.s2dentportal.com/olx/assets/products/madagascar dvd.jpg" class="img-responsive" width="200" />
+    [2] => <img src="http://www.s2dentportal.com/olx/assets/products/kane and abel.jpg" class="img-responsive" width="200" />
+)
+
+URL: http://www.s2dentportal.com/olx/home-and-furniture
+Array
+(
+    [0] => <img src="http://www.s2dentportal.com/olx/assets/products/bed room sofa.jpg" width="200" class="img-responsive" />
+    [1] => <img src="http://www.s2dentportal.com/olx/assets/products/toshiba_ref.jpg" width="200" class="img-responsive" />
+)
+
+URL: http://www.s2dentportal.com/olx/home?page=2
+Array
+(
+    [0] => <img src="http://www.s2dentportal.com/olx/assets/products/inception.jpg" width="210" />
+    [1] => <img src="http://www.s2dentportal.com/olx/assets/products/bed room sofa.jpg" width="210" />
+    [2] => <img src="http://www.s2dentportal.com/olx/assets/products/bat.jpg" width="210" />
+    [3] => <img src="http://www.s2dentportal.com/olx/assets/products/hoodie.jpg" width="210" />
+    [4] => <img src="http://www.s2dentportal.com/olx/assets/products/madagascar dvd.jpg" width="210" />
+    [5] => <img src="http://www.s2dentportal.com/olx/assets/products/toshiba_ref.jpg" width="210" />
+)
+
+URL: http://www.s2dentportal.com/olx/home?page=3
+Array
+(
+    [0] => <img src="http://www.s2dentportal.com/olx/assets/products/football.jpg" width="210" />
+    [1] => <img src="http://www.s2dentportal.com/olx/assets/products/kane and abel.jpg" width="210" />
+    [2] => <img src="http://www.s2dentportal.com/olx/assets/products/3-IMG_20140209_175825.jpg" width="210" />
+    [3] => <img src="http://www.s2dentportal.com/olx/assets/products/12-Wilson Basetball-basketball.jpg" width="210" />
+    [4] => <img src="http://www.s2dentportal.com/olx/assets/products/22-Samsung Galaxy S-download.jpg" width="210" />
+)

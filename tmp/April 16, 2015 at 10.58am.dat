@@ -1,0 +1,61 @@
+
+URL: http://bazm.in/
+Array
+(
+    [0] => <a href="home"><img id="logo" src="assets/images/logo.png" alt="Logo"></a>
+    [1] => <a href="home">Home</a>
+    [2] => <a href="faq">FAQ</a>
+    [3] => <a href="contact">Contact</a>
+    [4] => <a href="mailto:dtubazm@gmail.com">dtubazm@gmail.com</a>
+    [5] => <a href="home">Home</a>
+    [6] => <a href="about">About</a>
+    [7] => <a href="events">Events</a>
+    [8] => <a href="team">Team</a>
+    [9] => <a href="contact">Contact</a>
+    [10] => <a class="btn btn-cta" href="essay-writing"><i class="fa fa-play-circle"></i>Participate now</a>
+    [11] => <a href="essay-writing">Essay Writing Competition</a>
+    [12] => <a class="read-more" href="events">All events<i class="fa fa-chevron-right"></i></a>
+    [13] => <a class="prev" href="#videos-carousel" data-slide="prev"><i class="fa fa-caret-left"></i></a>
+    [14] => <a class="next" href="#videos-carousel" data-slide="next"><i class="fa fa-caret-right"></i></a>
+    [15] => <a href="essay-writing"><i class="fa fa-caret-right"></i>Submit Articles</a>
+    [16] => <a href="#"><i class="fa fa-caret-right"></i>Register</a>
+    [17] => <a href="contact"><i class="fa fa-caret-right"></i>Contact</a>
+    [18] => <a class="prev" href="#testimonials-carousel" data-slide="prev"><i class="fa fa-caret-left"></i></a>
+    [19] => <a class="next" href="#testimonials-carousel" data-slide="next"><i class="fa fa-caret-right"></i></a>
+    [20] => <a href="#"><img class="img-responsive" src="http://bazm.in/assets/images/awards/award1.jpg"  alt="" /></a>
+    [21] => <a href="#"><img class="img-responsive" src="http://bazm.in/assets/images/awards/award2.jpg"  alt="" /></a>
+    [22] => <a href="#"><img class="img-responsive" src="http://bazm.in/assets/images/awards/swiftintern.png"  alt="" /></a>
+    [23] => <a href="#"><img class="img-responsive" src="http://bazm.in/assets/images/awards/award4.jpg"  alt="" /></a>
+    [24] => <a href="#"><img class="img-responsive" src="http://bazm.in/assets/images/awards/award5.jpg"  alt="" /></a>
+    [25] => <a href="#"><img class="img-responsive" src="http://bazm.in/assets/images/awards/award6.jpg"  alt="" /></a>
+    [26] => <a href="about"><i class="fa fa-caret-right"></i>About us</a>
+    [27] => <a href="contact"><i class="fa fa-caret-right"></i>Contact us</a>
+    [28] => <a href="team"><i class="fa fa-caret-right"></i>Our Team</a>
+    [29] => <a href="mailto:dtubazm@gmail.com">dtubazm@gmail.com</a>
+    [30] => <a href="#" ><i class="fa fa-twitter"></i></a>
+    [31] => <a href="https://www.facebook.com/bAzmDTU" ><i class="fa fa-facebook"></i></a>
+    [32] => <a href="https://www.youtube.com/channel/UCnEZZ8_udZ9QgTXESWKQiJA" ><i class="fa fa-youtube"></i></a>
+    [33] => <a href="#" ><i class="fa fa-linkedin"></i></a>
+    [34] => <a href="https://plus.google.com/b/107161638397299876330/107161638397299876330/posts" ><i class="fa fa-google-plus"></i></a>
+    [35] => <a href="#" ><i class="fa fa-pinterest"></i></a>
+    [36] => <a href="#" ><i class="fa fa-skype"></i></a>
+    [37] => <a href="#" ><i class="fa fa-rss"></i></a>
+)
+
+URL: http://s2dentportal.com/olx/
+Array
+(
+    [0] => <a href="http://www.s2dentportal.com/olx/register">Register</a>
+    [1] => <a href="http://www.s2dentportal.com/olx/login">Log In</a>
+    [2] => <a href="http://www.s2dentportal.com/olx/">Home</a>
+    [3] => <a href="http://www.s2dentportal.com/olx/vehicles">Vehicles</a>
+    [4] => <a href="http://www.s2dentportal.com/olx/electronics-and-computer">Electronics and Computer</a>
+    [5] => <a href="http://www.s2dentportal.com/olx/mobiles-and-tablets">Mobiles and Tablets</a>
+    [6] => <a href="http://www.s2dentportal.com/olx/clothing-and-accessories">Clothing and Accessories</a>
+    [7] => <a href="http://www.s2dentportal.com/olx/books-and-cds">Books and CDs</a>
+    [8] => <a href="http://www.s2dentportal.com/olx/home-and-furniture">Home and Furniture</a>
+    [9] => <a href="http://www.s2dentportal.com/olx/other">Other</a>
+    [10] => <a href="http://www.s2dentportal.com/olx/home?page=2">2</a>
+    [11] => <a href="http://www.s2dentportal.com/olx/home?page=3">3</a>
+    [12] => <a href="http://www.s2dentportal.com/olx/home?page=2">Next &raquo;</a>
+)
