@@ -1,6 +1,0 @@
-<IfModule mod_rewrite.c>
-	RewriteEngine On
-	RewriteRule ^test/?$ sample/sample_bot.php [NC,L]
-	RewriteRule ^test2/?$ sample/sample_bot_2.php [NC,L]
-	
-</IfModule>
