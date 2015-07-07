@@ -5,7 +5,6 @@ use WebBot\lib\HTTP\Request as Request;
 require_once 'bootstrap.php';
 
 class Bot {
-
 	/**
      * Error message (false when no errors)
      *
@@ -188,7 +187,7 @@ class Bot {
 					$this->log("Fetched URL ({$id}): {$location} ", __METHOD__);
 				} else {
 					$fail++;
-					$this->log("Unable to fetch URL ({$id}): '{$location}', ". $response->error, __METHOD__);
+					$this->log("Unable to fetch URL ({$id}): '{$location}', Error: ". $response->getStatusCode(), __METHOD__);
 				}
 			} else {
 				$this->error = 'Invalid URL detected (empty URL with key '. $id. ' )';
@@ -237,4 +236,3 @@ class Bot {
 		return true;
 	}
 }
-?>

@@ -6,7 +6,6 @@ namespace WebBot\lib\HTTP;
  * @package HTTP
  */
 class Response {
-
 	/**
 	* HTTP response status code
 	* @var int
