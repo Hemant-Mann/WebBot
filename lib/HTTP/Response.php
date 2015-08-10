@@ -26,7 +26,7 @@ class Response {
 	
 	/**
 	* HTTP response header
-	* @var string
+	* @var array
 	*/
 	private $header;
 
@@ -35,7 +35,7 @@ class Response {
 	*
 	* @var boolean
 	*/
-	public $success;
+	public $success = false;
 
 	/**
 	* Init
@@ -43,7 +43,7 @@ class Response {
 	* @param int $status_code Response status code for the page
 	* @param string $type Response type
 	* @param HTTP\Response $body Repsonse body
-	* @param string $header HTTP Response header
+	* @param array $header HTTP Response header
 	*/
 	function __construct($status_code, $type, $body, $header) {
 		$this->status_code = $status_code;

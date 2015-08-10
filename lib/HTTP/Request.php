@@ -34,24 +34,24 @@ class Request {
 	 * Parse HTTP response
 	 *
 	 * @param string $body
-	 * @param array $header
-	 * @return Response object
+	 * @param array $headers
+	 * @return HTTP\Response object
 	*/
-	private static function __parseResponse($body, $header) {
-		$status_code = 0;
+	private static function __parseResponse($body, $headers) {
 		$content_type = '';
 
-		if(is_array($header) && count($header) > 0) {
-			foreach($header as $v) {
-				// ex: HTTP/1.x XYZ Message
-				if (substr($v, 0, 4) == 'HTTP' && strpos($v, ' ') !== false) {
-					$status_code = (int) substr($v, strpos($v, ' '), 4); // parse status code
-				}
-				// ex: Content-Type: *; charset=*
-				else if(strncasecmp($v, 'Content-Type:', 13) === 0) {
-					$content_type = $v;
-				}
+		if (is_array($headers)) {
+			$header = array_pop($headers);	// will return an array of headers
+			
+			// Get status code and content type of the page
+			$code = $header['http_code'];
+			if (substr($code, 0, 4) == 'HTTP' && strpos($code, ' ') !== false) {
+				$status_code = (int) substr($code, strpos($code, ' '), 4); // parse status code
+			} else {
+				$status_code = 500;
 			}
+			
+			$content_type = $header['Content-Type'];	
 		}
 
 		return new Response($status_code, $content_type, $body, $header);
@@ -65,23 +65,26 @@ class Request {
 	 * @return Response object
 	*/
 	public static function get($url, $timeout = 0) {
-		$context = stream_context_create();
-		stream_context_set_option($context, [
-			'http' => [
-				'timeout' => self::__formatTimeout($timeout),
-				'header' => "User-Agent: ". self::$user_agent. "\r\n"
-			], 
-			'ssl' => [
-				'verify_peer' => false,
-				'verify_peer_name' => false 
-			]
-		]);
+		$ch = curl_init();	// initializing cURL session
+		curl_setopt($ch, CURLOPT_URL, $url);	// executing cURL session
+		curl_setopt($ch, CURLOPT_USERAGENT, self::$user_agent);
+		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);	// follow any "Location" header
+		curl_setopt($ch, CURLOPT_VERBOSE, true);
+		curl_setopt($ch, CURLOPT_HEADER, true);	// include the header in the output
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);	// returning transfer as a string
+		$response = curl_exec($ch);
 
-		$http_response_header = NULL; // allow updating
+		// get size of header string
+		$header_size = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
+		curl_close($ch);
 
-		$res_body = @file_get_contents($url, false, $context);
+		$header = substr($response, 0, $header_size);
+		$body = substr($response, $header_size);
+		
+		$headers = self::headers($header);
+		// echo "<pre>". print_r($headers, true). "</pre>";
 
-		return self::__parseResponse($res_body, $http_response_header);
+		return self::__parseResponse($body, $headers);
 	}
 
 	/**
@@ -92,25 +95,53 @@ class Request {
 	 * @return Response object
 	*/
 	public static function head($url, $timeout = 0) {
-		$context = stream_context_create();
-		$array = [
-			'http' => [
-				'method' => 'HEAD',
-				'timeout' => self::__formatTimeout($timeout),
-				'header' => "User-Agent: ". self::$user_agent
-			], 
-			'ssl' => [
-				'verify_peer' => false,
-				'verify_peer_name' => false 
-			]
-		];
+		$ch = curl_init();	// initializing cURL session
+		curl_setopt($ch, CURLOPT_URL, $url);	// executing cURL session
+		curl_setopt($ch, CURLOPT_USERAGENT, self::$user_agent);
+		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);	// follow any "Location" header
+		curl_setopt($ch, CURLOPT_VERBOSE, true);
+		curl_setopt($ch, CURLOPT_HEADER, true);	// include the header in the output
+		curl_setopt($ch, CURLOPT_NOBODY, true);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);	// returning transfer as a string
+		$response = curl_exec($ch);
 
-		stream_context_set_option($context, $array);
+		// get size of header string
+		$header_size = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
+		curl_close($ch);
 
-		$http_response_header = NULL; // allow updating
-		
-		$res_body = file_get_contents($url, false, $context);
-		
-		return self::__parseResponse($res_body, $http_response_header);
+		$header = substr($response, 0, $header_size);
+		$headers = self::headers($header);
+
+		return self::__parseResponse('', $headers);
+	}
+
+	/**
+	 * Returns an associative array of headers from the header string
+	 * @param string $headerContent Contains the different headers separated by \r\n
+	 * @return array
+	 */
+	private static function headers($headerContent) {
+		$headers = array();
+
+	    // Split the string on every "double" new line.
+	    $arrRequests = explode("\r\n\r\n", $headerContent);
+
+	    // Loop of response headers. The "count() -1" is to 
+	    //avoid an empty row for the extra line break before the body of the response.
+	    for ($index = 0; $index < count($arrRequests) -1; $index++) {
+
+	        foreach (explode("\r\n", $arrRequests[$index]) as $i => $line)
+	        {
+	            if ($i === 0)
+	                $headers[$index]['http_code'] = $line;
+	            else
+	            {
+	                list ($key, $value) = explode(': ', $line);
+	                $headers[$index][$key] = $value;
+	            }
+	        }
+	    }
+
+	    return $headers;
 	}
 }
