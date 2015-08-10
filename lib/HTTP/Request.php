@@ -58,7 +58,7 @@ class Request {
 	}
 
 	/**
-	 * Execute HTTP GET request
+	 * Execute HTTP GET request using the cURL library. We can setup various options for executing the request
 	 *
 	 * @param string $url
 	 * @param int|float $timeout(seconds)
@@ -88,7 +88,7 @@ class Request {
 	}
 
 	/**
-	 * Execute HTTP HEAD request
+	 * Execute HTTP HEAD request which is basically a GET request but with no body
 	 *
 	 * @param string $url
 	 * @param int|float $timeout
@@ -101,7 +101,7 @@ class Request {
 		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);	// follow any "Location" header
 		curl_setopt($ch, CURLOPT_VERBOSE, true);
 		curl_setopt($ch, CURLOPT_HEADER, true);	// include the header in the output
-		curl_setopt($ch, CURLOPT_NOBODY, true);
+		curl_setopt($ch, CURLOPT_NOBODY, true);	// Because we need only the headers
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);	// returning transfer as a string
 		$response = curl_exec($ch);
 
