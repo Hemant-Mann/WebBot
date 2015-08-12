@@ -44,13 +44,7 @@ class Request {
 			$header = array_pop($headers);	// will return an array of headers
 			
 			// Get status code and content type of the page
-			$code = $header['http_code'];
-			if (substr($code, 0, 4) == 'HTTP' && strpos($code, ' ') !== false) {
-				$status_code = (int) substr($code, strpos($code, ' '), 4); // parse status code
-			} else {
-				$status_code = 500;
-			}
-			
+			$status_code = $header['http_code'];
 			$content_type = $header['Content-Type'];	
 		}
 
@@ -133,7 +127,7 @@ class Request {
 	        foreach (explode("\r\n", $arrRequests[$index]) as $i => $line)
 	        {
 	            if ($i === 0)
-	                $headers[$index]['http_code'] = $line;
+	                $headers[$index]['http_code'] = self::getStatusCode($line);
 	            else
 	            {
 	                list ($key, $value) = explode(': ', $line);
@@ -143,5 +137,15 @@ class Request {
 	    }
 
 	    return $headers;
+	}
+
+	private static function getStatusCode($codeString) {
+		if (substr($codeString, 0, 4) == 'HTTP' && strpos($codeString, ' ') !== false) {
+			$status_code = (int) substr($codeString, strpos($codeString, ' '), 4); // parse status code
+		} else {
+			$status_code = 500;	// Something went wrong
+		}
+
+		return $status_code;
 	}
 }
