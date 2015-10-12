@@ -6,89 +6,89 @@ require_once 'bootstrap.php';
 
 class Bot {
 	/**
-     * Error message (false when no errors)
-     *
-     * @var boolean|string
-     */ 
+	 * Error message (false when no errors)
+	 *
+	 * @var boolean|string
+	 */ 
 	public $error = false;
 
 	/**
-     * WebBot\lib\HTTP\Response Document Storage
-     *
-     * @var object Document class
-     */ 
+	 * WebBot\lib\HTTP\Response Document Storage
+	 *
+	 * @var object Document class
+	 */ 
 	private $documents = [];
 
 	/**
-     * Fetch URLs
-     *
-     * @var array
-     */ 
+	 * Fetch URLs
+	 *
+	 * @var array
+	 */ 
 	private $urls;
 
 	/**
-     * Trace Log
-     *
-     * @var array
-     */ 
+	 * Trace Log
+	 *
+	 * @var array
+	 */ 
 	private $log = [];
 
 	private $start;
 
 	/**
-     * Document Count Successful fetch
-     *
-     * @var int
-     */ 
+	 * Document Count Successful fetch
+	 *
+	 * @var int
+	*/ 
 	private $total_documents_success;
 	
 	/**
-     * Document Count fetch failure
-     *
-     * @var int
-     */ 
+	* Document Count fetch failure
+	*
+	* @var int
+	*/ 
 	private $total_documents_failed;
 	
 	/**
-     * Document Count
-     *
-     * @var int
-     */ 
+	* Document Count
+	*
+	* @var int
+	*/ 
 	private $total_documents;
-
+	
 	public static $conf_default_timeout;
-
+	
 	/**
-     * Delay between fetches (seconds), 0 (zero) for no delay
-     *
-     * @var int|float
-     */ 
+	* Delay between fetches (seconds), 0 (zero) for no delay
+	*
+	* @var int|float
+	*/ 
 	public static $conf_delay_between_fetches;
 
 
-    /**
-     * Force HTTPS protocol when fetching URL data
-     *
-     * Note: will not override URL protocol if set, ex: fetch URL 'http://url' will
-     * not be forced to 'https://url', only 'url' gets forced to 'https://url'
-     *
-     * @var boolean
-     */ 
+	/**
+	* Force HTTPS protocol when fetching URL data
+	*
+	* Note: will not override URL protocol if set, ex: fetch URL 'http://url' will
+	* not be forced to 'https://url', only 'url' gets forced to 'https://url'
+	*
+	* @var boolean
+	*/ 
 	public static $conf_force_https;
-
+	
 	/**
-     * Include document field raw values when matching field patterns
-     * ex: '<h2>(.*)</h2>' => [(field value)'heading', (field raw value)'<h2>heading</h2>']
-     *
-     * @var boolean
-     */ 
+	* Include document field raw values when matching field patterns
+	* ex: '<h2>(.*)</h2>' => [(field value)'heading', (field raw value)'<h2>heading</h2>']
+	*
+	* @var boolean
+	*/ 
 	public static $conf_include_document_field_raw_values;
-
+	
 	/**
-     * Directory for storing data
-     * 
-     * @var string
-     */ 
+	* Directory for storing data
+	* 
+	* @var string
+	*/ 
 	public static $conf_store_dir;
 
 	/**
@@ -133,6 +133,7 @@ class Bot {
 
 		$file = self::$conf_store_dir.'log.txt';
 		
+		// comment out these lines below to stop logging bot requests
 		if($this->start) {
 			file_put_contents($file, "\t\t\t\t----------\t----------\n", FILE_APPEND);
 			$this->start = false;
