@@ -116,6 +116,9 @@ class Document {
      * @return \DOMXPath object
      */
     public function query($q) {
+		if (!$this->_xPath) {
+			$this->returnXPathObject();
+		}
         $el = $this->_xPath->query($q);
         $length = $el->length;
         
