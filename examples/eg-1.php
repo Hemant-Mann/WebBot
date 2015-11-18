@@ -3,10 +3,10 @@ require_once '../autoloader.php';
 use WebBot\lib\WebBot\Bot as Bot;
 
 // URLs to fetch data from
-$urls = [
+$urls = array(
 	'bazm' => 'http://bazm.in/',
 	'project' => 'http://drcmanjari15.info/',
-];
+);
 
 // set WebBot object
 $webbot = new Bot($urls);
