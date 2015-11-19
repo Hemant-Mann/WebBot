@@ -126,12 +126,6 @@ class Document {
             throw new Doc("Element doesn't exist in DOM");
         }
 
-        if ($length === 1) {
-        	$el = $el->item(0);
-        	return $el->nodeValue;
-        } else {
-        	return $el;
-        }
-        
+        return $el;
     }
 }
