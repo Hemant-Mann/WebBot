@@ -1,7 +1,7 @@
 <?php
 require_once '../autoloader.php';
-use WebBot\lib\WebBot\Bot as Bot;
-use WebBot\lib\Exceptions\Document as Doc;
+use WebBot\Core\Bot as Bot;
+use WebBot\Exceptions\Document as Doc;
 
 $bot = new Bot(array('test' => 'http://swiftintern.com'));
 $bot->execute();
@@ -13,5 +13,5 @@ try {
 	$el = $document->query($query);
 	var_dump($el);
 } catch (Doc $e) {
-	echo $e->getCustomMessage();
+	echo $e->getMessage();
 }

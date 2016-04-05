@@ -1,7 +1,7 @@
 <?php
-namespace WebBot\lib\WebBot;
-use WebBot\lib\WebBot\Document as Document;
-use WebBot\lib\HTTP\Request as Request;
+namespace WebBot\Core;
+use WebBot\Core\Document as Document;
+use WebBot\HTTP\Request as Request;
 require_once 'bootstrap.php';
 
 class Bot {
@@ -13,7 +13,7 @@ class Bot {
 	public $error = false;
 
 	/**
-	 * WebBot\lib\HTTP\Response Document Storage
+	 * WebBot\HTTP\Response Document Storage
 	 *
 	 * @var object Document class
 	 */ 
@@ -39,57 +39,62 @@ class Bot {
 	 * Document Count Successful fetch
 	 *
 	 * @var int
-	*/ 
+	 */ 
 	private $total_documents_success;
 	
 	/**
-	* Document Count fetch failure
-	*
-	* @var int
-	*/ 
+	 * Document Count fetch failure
+	 *
+	 * @var int
+	 */ 
 	private $total_documents_failed;
 	
 	/**
-	* Document Count
-	*
-	* @var int
-	*/ 
+	 * Document Count
+	 *
+	 * @var int
+	 */ 
 	private $total_documents;
 	
 	public static $conf_default_timeout;
 	
 	/**
-	* Delay between fetches (seconds), 0 (zero) for no delay
-	*
-	* @var int|float
-	*/ 
+	 * Delay between fetches (seconds), 0 (zero) for no delay
+	 *
+	 * @var int|float
+	 */ 
 	public static $conf_delay_between_fetches;
 
 
 	/**
-	* Force HTTPS protocol when fetching URL data
-	*
-	* Note: will not override URL protocol if set, ex: fetch URL 'http://url' will
-	* not be forced to 'https://url', only 'url' gets forced to 'https://url'
-	*
-	* @var boolean
-	*/ 
+	 * Force HTTPS protocol when fetching URL data
+	 *
+	 * Note: will not override URL protocol if set, ex: fetch URL 'http://url' will
+	 * not be forced to 'https://url', only 'url' gets forced to 'https://url'
+	 *
+	 * @var boolean
+	 */ 
 	public static $conf_force_https;
 	
 	/**
-	* Include document field raw values when matching field patterns
-	* ex: '<h2>(.*)</h2>' => [(field value)'heading', (field raw value)'<h2>heading</h2>']
-	*
-	* @var boolean
-	*/ 
+	 * Include document field raw values when matching field patterns
+	 * ex: '<h2>(.*)</h2>' => [(field value)'heading', (field raw value)'<h2>heading</h2>']
+	 *
+	 * @var boolean
+	 */ 
 	public static $conf_include_document_field_raw_values;
 	
 	/**
-	* Directory for storing data
-	* 
-	* @var string
-	*/ 
+	 * Directory for storing data
+	 * 
+	 * @var string
+	 */ 
 	public static $conf_store_dir;
+
+	/**
+	 * Should log results
+	 */
+	public static $logging = true;
 
 	/**
 	 * Init
@@ -97,8 +102,8 @@ class Bot {
 	 *
 	 * @param array $urls
 	 */ 
-	function __construct($urls = array()) {
-		if(empty($urls)) {
+	public function __construct($urls = array()) {
+		if (empty($urls)) {
 			$this->error = "Invalid number of URLs (zero)";
 			$this->urls = array();
 			$this->start = true;
@@ -113,7 +118,7 @@ class Bot {
 	/**
 	 * Get the documents initialized 
 	 *
-	 * @return array \WebBot\Document objects
+	 * @return array \WebBot\Core\Document objects
 	 */ 
 	public function getDocuments() {
 		return $this->documents;
@@ -127,6 +132,9 @@ class Bot {
 	 * @return void
 	 */ 
 	private function log($message, $method) {
+		if (!self::$logging) {
+			return;
+		}
 		$date = date('Y-m-d H:i:s');
 		$this->log[] = $date.' => '. $message . ' ('. $method. ')';
 		$current = count($this->log) - 1;
@@ -214,13 +222,13 @@ class Bot {
 	 */ 
 	public function store($filename, $data) {
 		// check if data directory exists
-		if(!is_dir(self::$conf_store_dir)) {
+		if (!is_dir(self::$conf_store_dir)) {
 			$this->error = 'Invalid data storage directory "'. self::$conf_store_dir . '"';
 			return false;
 		}
 
 		// check if data directory is writable
-		if(!is_writable(self::$conf_store_dir)) {
+		if (!is_writable(self::$conf_store_dir)) {
 			$this->error = 'Data storage directory "'. self::$conf_store_dir .'" is not writable';
 			return false;
 		}
@@ -229,7 +237,7 @@ class Bot {
 		$file_path = self::$conf_store_dir. trim($filename);
 
 		// store data in data file
-		if(file_put_contents($file_path, $data, FILE_APPEND) == false) {
+		if (file_put_contents($file_path, $data, FILE_APPEND) == false) {
 			$this->error = 'Failed to save data to data file "'. $file_path .'"';
 			return false;
 		}

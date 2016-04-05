@@ -1,3 +1,3 @@
 <?php
-namespace WebBot\lib\Exceptions;
+namespace WebBot\Exceptions;
 class Document extends Core {}

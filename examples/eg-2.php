@@ -1,6 +1,6 @@
 <?php
 require '../autoloader.php';
-use WebBot\lib\HTTP\Request as Request;
+use WebBot\HTTP\Request as Request;
 
 $pageHeaders = Request::head("http://drcmanjari15.info/");
 

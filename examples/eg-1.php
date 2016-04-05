@@ -1,11 +1,11 @@
 <?php
 require_once '../autoloader.php';
-use WebBot\lib\WebBot\Bot as Bot;
+use WebBot\Core\Bot as Bot;
 
 // URLs to fetch data from
 $urls = array(
-	'bazm' => 'http://bazm.in/',
-	'project' => 'http://drcmanjari15.info/',
+	'cloudstuff' => 'http://cloudstuff.tech/',
+	'project' => 'http://playmusic.net/',
 );
 
 // set WebBot object
@@ -30,7 +30,7 @@ foreach ($documents as $document) {
 	// Find required pattern from the page
 	$data = $document->find("/<a.*?href\s*=\s*[\"'](.*?)[\"'].*?>(.*?)<\/a>/");
 	
-	if($data){
+	if ($data){
 		$save_data .= "\n". print_r($data[0], true);
 		// Store the data of fetched documents in .dat file
 		if($webbot->store("{$filename}", $save_data)) {

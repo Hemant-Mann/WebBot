@@ -1,6 +1,6 @@
 <?php
-namespace WebBot\lib\WebBot;
-use WebBot\lib\WebBot\Bot as Bot;
+namespace WebBot\Core\WebBot;
+use WebBot\Core\Bot as Bot;
 
 // set unlimited execution time
 set_time_limit(0);
@@ -19,5 +19,9 @@ Bot::$conf_include_document_field_raw_values = false;
 
 // set the directory for storing information
 // $dir = your/custom/path;
-$dir = LIB_PATH.'/WebBot/tmp/';
+if (defined('LIB_PATH')) {
+	$dir = LIB_PATH . '/WebBot/tmp/';
+} else {
+	$dir = '../tmp/';
+}
 Bot::$conf_store_dir = $dir;

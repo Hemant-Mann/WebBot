@@ -1,12 +1,12 @@
 <?php
-namespace WebBot\lib\WebBot;
-use WebBot\lib\Exceptions\Document as Doc;
+namespace WebBot\Core;
+use WebBot\Exceptions\Document as Doc;
 
 class Document {
     
     /**
      * Store Document Response object
-     * @var \WebBot\lib\HTTP\Response object
+     * @var \WebBot\HTTP\Response object
      */
     protected $_response_obj;
     
@@ -36,10 +36,14 @@ class Document {
     
     /**
      * getter
-     * @return \WebBot\lib\HTTP\Response object
+     * @return \WebBot\HTTP\Response object
      */
     public function getHttpResponse() {
         return $this->_response_obj;
+    }
+
+    public function getBody() {
+        return $this->_response_obj->getBody();
     }
     
     /**
@@ -52,9 +56,9 @@ class Document {
      */
     public function test($value, $case_insensitive = true) {
         if (preg_match('#^\/.*\/$#', $value)) {
-            return preg_match($value . 'Usm' . ($case_insensitive ? 'i' : ''), $this->getHttpResponse()->getBody());
+            return preg_match($value . 'Usm' . ($case_insensitive ? 'i' : ''), $this->getBody());
         } else {	// no regex, use string position
-            return call_user_func(($case_insensitive ? 'stripos' : 'strpos'), $this->getHttpResponse()->getBody(), $value);
+            return call_user_func(($case_insensitive ? 'stripos' : 'strpos'), $this->getBody(), $value);
         }
         
         return false;
@@ -68,26 +72,26 @@ class Document {
     public function find($value, $read_length_or_str = 0, $case_insensitive = true) {
         if ($this->test($value, $case_insensitive)) {
             if (preg_match('#^\/.*\/$#', $value)) {
-                preg_match_all($value, $this->getHttpResponse()->getBody(), $m);
+                preg_match_all($value, $this->getBody(), $m);
                 return $m;
             } else {
                  // no regex, use string position
-                $pos = call_user_func(($case_insensitive ? 'stripos' : 'strpos'), $this->getHttpResponse()->getBody(), $value);
+                $pos = call_user_func(($case_insensitive ? 'stripos' : 'strpos'), $this->getBody(), $value);
                 
                 if (is_string($read_length_or_str)) {
                     $pos+= strlen(value);
                      // move position length of value
-                    $pos_end = call_user_func(($case_insensitive ? 'stripos' : 'strpos'), $this->getHttpResponse()->getBody(), $read_length_or_str);
+                    $pos_end = call_user_func(($case_insensitive ? 'stripos' : 'strpos'), $this->getBody(), $read_length_or_str);
                     
                     echo "start: $pos, end: $pos_end<br />";
                     if ($pos_end !== false && $pos_end > $pos) {
                         $diff = $pos_end - $pos;
-                        return substr($this->getHttpResponse()->getBody(), $pos, $diff);
+                        return substr($this->getBody(), $pos, $diff);
                     }
                 } else {
                     $read_length = (int)$read_length_or_str; // int read length
                     
-                    return $read_length < 1 ? substr($this->getHttpResponse()->getBody(), $pos) : substr($this->getHttpResponse()->getBody(), $pos, $read_length);
+                    return $read_length < 1 ? substr($this->getBody(), $pos) : substr($this->getBody(), $pos, $read_length);
                 }
             }
         } else {
@@ -102,7 +106,7 @@ class Document {
     public function returnXPathObject() {
         if (!$this->_xPath) {
             $xmlPageDom = new \DomDocument(); // Instantiating a new DomDocument object
-            @$xmlPageDom->loadHTML($this->_response_obj->getBody()); // Loading the HTML from downloaded page
+            @$xmlPageDom->loadHTML($this->getBody()); // Loading the HTML from downloaded page
             $this->_xPath = new \DOMXPath($xmlPageDom); // Instantiating new XPath DOM object
         }
         return $this->_xPath;
@@ -115,11 +119,16 @@ class Document {
      * @param string $xPath The XPath query string
      * @return \DOMXPath object
      */
-    public function query($q) {
+    public function query($q, $contextNode = null) {
 		if (!$this->_xPath) {
 			$this->returnXPathObject();
 		}
-        $el = $this->_xPath->query($q);
+
+        if ($contextNode) {
+            $el = $this->_xPath->query($q, $contextNode);
+        } else {
+            $el = $this->_xPath->query($q);
+        }
         $length = $el->length;
         
         if ($length === 0) {

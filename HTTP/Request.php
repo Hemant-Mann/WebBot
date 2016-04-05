@@ -1,6 +1,6 @@
 <?php
-namespace WebBot\lib\HTTP;
-use WebBot\lib\HTTP\Response as Response;
+namespace WebBot\HTTP;
+use WebBot\HTTP\Response as Response;
 /**
  * HTTP Request class - execute HTTP GET and HEAD requests
  *
