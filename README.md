@@ -10,14 +10,17 @@ For usage see examples folder.
 
 
 Basic Example
-```
+```php
 <?php
 require 'autoloader.php';
 use WebBot\Core\Bot as Bot;
 
 $bot = new Bot(array(
-	'url' => 'http://www.youtube.com/'
-));
+			'url' => 'http://www.youtube.com/'
+		), array(
+			'logging' => true, // or false (Default: false)
+			'log_dir' => null // (Default: "./tmp")
+		));
 
 // execute
 $bot->execute();
@@ -37,8 +40,12 @@ foreach ($documents as $doc) {
 ```
 
 ### Notes ###
-- Linux/Mac users you may need to make the directory 'tmp' writable for logging purposes.
-- You can disable logging in the bot by setting 
-```
-WebBot\Core\Bot::$logging = false;
+- Log Directory must be writable if logging is enabled
+- You can enable logging in the bot by setting it in constructor or chaning in "Core/bootstrap.php" 
+
+### Installation
+```bash
+git clone https://github.com/Hemant-Mann/WebBot.git
+cd WebBot
+chmod 777 tmp
 ```

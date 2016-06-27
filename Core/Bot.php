@@ -102,16 +102,24 @@ class Bot {
 	 *
 	 * @param array $urls
 	 */ 
-	public function __construct($urls = array()) {
+	public function __construct($urls = array(), $opts = array()) {
 		if (empty($urls)) {
-			$this->error = "Invalid number of URLs (zero)";
-			$this->urls = array();
-			$this->start = true;
-			$this->log($this->error, __METHOD__);
+			throw new \WebBot\Exceptions\Core("Invalid Arguments for URL", 1);
 		} else {
 			$this->urls = $urls;
 			$this->start = true;
 			$this->log(count($this->urls) . ' URL(s) initialized', __METHOD__);
+		}
+		
+		if (!empty($opts)) {
+			self::$logging = (isset($opts["logging"]) ? $opts["logging"] : false);
+
+			$log_dir = self::$conf_store_dir;
+			self::$conf_store_dir = (isset($opts["log_dir"]) ? $opts["log_dir"] : $log_dir);
+
+			if (self::$logging && (!is_dir(self::$conf_store_dir) || !is_writable(self::$conf_store_dir))) {
+				throw new \WebBot\Exceptions\Core("Log Directory Not Writable", 1);
+			}
 		}
 	}
 
@@ -121,6 +129,9 @@ class Bot {
 	 * @return array \WebBot\Core\Document objects
 	 */ 
 	public function getDocuments() {
+		if (empty($this->documents)) {
+			throw new \WebBot\Exceptions\Core('No document was scraped, See error log for more info!!');
+		}
 		return $this->documents;
 	}
 
@@ -163,13 +174,13 @@ class Bot {
 			return false;
 		}
 
-        // do not force protocol if protocol is already set
-        if (!preg_match('/^https?\:\/\/.*/ i', $url)) { // match 'http(s?)://*'
-            // set protocol
-            $url = ( self::$conf_force_https ? 'https' : 'http' ) . '://' . $url;
-        }
-        
-        return $url;
+		// do not force protocol if protocol is already set
+		if (!preg_match('/^https?\:\/\/.*/ i', $url)) { // match 'http(s?)://*'
+			// set protocol
+			$url = ( self::$conf_force_https ? 'https' : 'http' ) . '://' . $url;
+		}
+		
+		return $url;
 	}
 	
 	/**

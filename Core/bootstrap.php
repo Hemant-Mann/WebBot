@@ -24,4 +24,5 @@ if (defined('LIB_PATH')) {
 } else {
 	$dir = '../tmp/';
 }
+Bot::$logging = false;
 Bot::$conf_store_dir = $dir;
