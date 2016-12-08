@@ -1,7 +1,6 @@
 <?php
 namespace WebBot\Core;
-use WebBot\Core\Document as Document;
-use WebBot\HTTP\Request as Request;
+use WebBot\HTTP\Request;
 require_once 'bootstrap.php';
 
 class Bot {
@@ -120,6 +119,9 @@ class Bot {
 			if (self::$logging && (!is_dir(self::$conf_store_dir) || !is_writable(self::$conf_store_dir))) {
 				throw new \WebBot\Exceptions\Core("Log Directory Not Writable", 1);
 			}
+
+			Request::$userAgent = isset($opts['ua']) ? $opts['ua'] : Request::$userAgent;
+			Request::$followLocation = isset($opts['followLocation']) ? (boolean) $opts['followLocation'] : true;
 		}
 	}
 

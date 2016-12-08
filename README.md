@@ -19,7 +19,9 @@ $bot = new Bot(array(
 			'url' => 'http://www.youtube.com/'
 		), array(
 			'logging' => true, // or false (Default: false)
-			'log_dir' => null // (Default: "./tmp")
+			'log_dir' => null, // (Default: "./tmp")
+			'ua' => 'Your Custom User Agent',	// (Default: Chrome for Windows)
+			'followLocation' => true	// or false (Default: true)
 		));
 
 // execute

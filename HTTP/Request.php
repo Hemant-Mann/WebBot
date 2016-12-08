@@ -12,7 +12,9 @@ class Request {
 	 *
 	 * @var string
 	*/
-	public static $user_agent = 'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.101 Safari/537.36';
+	public static $userAgent = 'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.101 Safari/537.36';
+
+	public static $followLocation = true;
 
 	/**
 	 * Format timeout in seconds, if no timeout use default timeout
@@ -61,8 +63,11 @@ class Request {
 	public static function get($url, $timeout = 0) {
 		$ch = curl_init();	// initializing cURL session
 		curl_setopt($ch, CURLOPT_URL, $url);	// executing cURL session
-		curl_setopt($ch, CURLOPT_USERAGENT, self::$user_agent);
-		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);	// follow any "Location" header
+		curl_setopt($ch, CURLOPT_USERAGENT, self::$userAgent);
+
+		if (self::$followLocation) {
+			curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);	// follow any "Location" header	
+		}
 		curl_setopt($ch, CURLOPT_VERBOSE, true);
 		curl_setopt($ch, CURLOPT_HEADER, true);	// include the header in the output
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);	// returning transfer as a string
@@ -91,8 +96,11 @@ class Request {
 	public static function head($url, $timeout = 0) {
 		$ch = curl_init();	// initializing cURL session
 		curl_setopt($ch, CURLOPT_URL, $url);	// executing cURL session
-		curl_setopt($ch, CURLOPT_USERAGENT, self::$user_agent);
-		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);	// follow any "Location" header
+		curl_setopt($ch, CURLOPT_USERAGENT, self::$userAgent);
+
+		if (self::$followLocation) {
+			curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);	// follow any "Location" header	
+		}
 		curl_setopt($ch, CURLOPT_VERBOSE, true);
 		curl_setopt($ch, CURLOPT_HEADER, true);	// include the header in the output
 		curl_setopt($ch, CURLOPT_NOBODY, true);	// Because we need only the headers
